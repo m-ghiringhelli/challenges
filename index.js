@@ -1,6 +1,10 @@
 class Stack {
   #list = [];
-
+  constructor(initialList) {
+    if (initialList) {
+      this.#list = initialList;
+    }
+  }
   //methods
   push(item) {
     this.#list.push(item);
@@ -14,6 +18,10 @@ class Stack {
   
   peek(item) {
     return this.#list[this.#list.length - 1];
+  }
+
+  get readableList() {
+    return this.#list;
   }
 }
 
@@ -36,7 +44,21 @@ class Queue {
     return (this.#list.length === 0) ? false : true;
   }
 }
-module.exports = { Stack, Queue };
+
+const reverse = (stack1) => {
+  const stack2 = new Stack();
+  
+  while (stack1.length > 0) {
+    const item = stack1.pop();
+    stack2.push(item);
+  }
+  return stack2.readableList;
+}
+
+const stack = new Stack([1, 2, 3]);
+console.log(stack);
+
+module.exports = { Stack, Queue, reverse };
 
 
 
